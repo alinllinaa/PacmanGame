@@ -1,0 +1,6 @@
+[
+  "test_pacman.py::test_move_player_basic[0-102-100]",
+  "test_pacman.py::test_move_player_basic[1-98-100]",
+  "test_pacman.py::test_move_player_basic[2-100-98]",
+  "test_pacman.py::test_move_player_basic[3-100-102]"
+]
