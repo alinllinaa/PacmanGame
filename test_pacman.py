@@ -36,4 +36,3 @@ def ghost():
         id=0
     )
 
-
