@@ -30,6 +30,9 @@ jobs:
         flake8 pacman.py --format=html --htmldir=flake8-report --exit-zero
 
     - name: Run tests with pytest
-      run: |
-        pip install pytest pytest-html
-        pytest --html=pytest-report.html
+  run: |
+    pip install pytest pytest-html
+    ls -la
+    pwd
+    echo "Starting pytest"
+    pytest --html=pytest-report.html
