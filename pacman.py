@@ -18,6 +18,9 @@ PI = math.pi
 player_images = []
 for i in range(1, 5):
     img_path = f'assets/player_images/{i}.png'
+    player_images.append(pygame.transform.scale(pygame.image.load(img_path), (45, 45)))
+
+print("Player Images:", player_images)  # Це для перевірки, чи завантажились зображення
 blinky_img_path = 'assets/ghost_images/red.png'
 blinky_img = pygame.transform.scale(pygame.image.load(blinky_img_path), (45, 45))
 pinky_img_path = 'assets/ghost_images/pink.png'
