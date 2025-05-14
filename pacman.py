@@ -752,6 +752,7 @@ def draw_board():
 
 def draw_player():
     # 0-RIGHT, 1-LEFT, 2-UP, 3-DOWN
+   if counter // 5 < len(player_images):
     if direction == 0:
         screen.blit(player_images[counter // 5], (player_x, player_y))
     elif direction == 1:
@@ -760,7 +761,6 @@ def draw_player():
         screen.blit(pygame.transform.rotate(player_images[counter // 5], 90), (player_x, player_y))
     elif direction == 3:
         screen.blit(pygame.transform.rotate(player_images[counter // 5], 270), (player_x, player_y))
-
 
 def check_position(centerx, centery):
     turns = [False, False, False, False]
