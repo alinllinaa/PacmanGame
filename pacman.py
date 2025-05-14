@@ -18,14 +18,16 @@ PI = math.pi
 player_images = []
 for i in range(1, 5):
     img_path = f'assets/player_images/{i}.png'
-    player_images.append(pygame.transform.scale(pygame.image.load(img_path), (45, 45)))
-
+    try:
+        player_images.append(pygame.transform.scale(pygame.image.load(img_path), (45, 45)))
+        print(f"Loaded: {img_path}")
+    except FileNotFoundError:
+        print(f"File not found: {img_path}")
 print("Player Images:", player_images)  # Це для перевірки, чи завантажились зображення
 blinky_img_path = 'assets/ghost_images/red.png'
 blinky_img = pygame.transform.scale(pygame.image.load(blinky_img_path), (45, 45))
 pinky_img_path = 'assets/ghost_images/pink.png'
 pinky_img = pygame.transform.scale(pygame.image.load(pinky_img_path), (45, 45))
-pinky_img = pygame.transform.scale(pygame.image.load('assets/ghost_images/pink.png'), (45, 45))
 inky_img_path = 'assets/ghost_images/blue.png'
 inky_img = pygame.transform.scale(pygame.image.load(inky_img_path), (45, 45))
 clyde_img_path = 'assets/ghost_images/orange.png'
