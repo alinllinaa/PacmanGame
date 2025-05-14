@@ -1,8 +1,10 @@
+print("Starting tests...")
 import pytest
 import pygame
 import pacman  # імпортуємо весь модуль
 
 # ======= Тести руху Pac-Man'a ==========
+print("Starting tests...")
 
 @pytest.mark.parametrize("direction, expected_x, expected_y", [
     (0, 102, 100),  # вправо
@@ -21,6 +23,7 @@ def test_move_player_basic(monkeypatch, direction, expected_x, expected_y):
     assert new_y == expected_y
 
 # ======= Тести на зіткнення з привидом ==========
+print("Starting tests...")
 
 @pytest.fixture
 def ghost():
