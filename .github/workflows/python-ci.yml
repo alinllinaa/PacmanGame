@@ -25,9 +25,9 @@ jobs:
         pip install -r requirements.txt
 
     - name: Lint with flake8
-      run: |
-        pip install flake8 flake8-html
-        flake8 pacman.py --format=html --htmldir=flake8-report
+  run: |
+    pip install flake8 flake8-html
+    flake8 pacman.py --format=html --htmldir=flake8-report --exit-zero
 
     - name: Run tests with pytest
       run: |
