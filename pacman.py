@@ -17,13 +17,20 @@ color = 'blue'
 PI = math.pi
 player_images = []
 for i in range(1, 5):
-    player_images.append(pygame.transform.scale(pygame.image.load(f'assets/player_images/{i}.png'), (45, 45)))
-blinky_img = pygame.transform.scale(pygame.image.load(f'assets/ghost_images/red.png'), (45, 45))
-pinky_img = pygame.transform.scale(pygame.image.load(f'assets/ghost_images/pink.png'), (45, 45))
-inky_img = pygame.transform.scale(pygame.image.load(f'assets/ghost_images/blue.png'), (45, 45))
-clyde_img = pygame.transform.scale(pygame.image.load(f'assets/ghost_images/orange.png'), (45, 45))
-spooked_img = pygame.transform.scale(pygame.image.load(f'assets/ghost_images/powerup.png'), (45, 45))
-dead_img = pygame.transform.scale(pygame.image.load(f'assets/ghost_images/dead.png'), (45, 45))
+    img_path = f'assets/player_images/{i}.png'
+blinky_img_path = 'assets/ghost_images/red.png'
+blinky_img = pygame.transform.scale(pygame.image.load(blinky_img_path), (45, 45))
+pinky_img_path = 'assets/ghost_images/pink.png'
+pinky_img = pygame.transform.scale(pygame.image.load(pinky_img_path), (45, 45))
+pinky_img = pygame.transform.scale(pygame.image.load('assets/ghost_images/pink.png'), (45, 45))
+inky_img_path = 'assets/ghost_images/blue.png'
+inky_img = pygame.transform.scale(pygame.image.load(inky_img_path), (45, 45))
+clyde_img_path = 'assets/ghost_images/orange.png'
+clyde_img = pygame.transform.scale(pygame.image.load(clyde_img_path), (45, 45))
+spooked_img_path = 'assets/ghost_images/powerup.png'
+spooked_img = pygame.transform.scale(pygame.image.load(spooked_img_path), (45, 45))
+dead_img_path = 'assets/ghost_images/dead.png'
+dead_img = pygame.transform.scale(pygame.image.load(dead_img_path), (45, 45))
 player_x = 450
 player_y = 663
 direction = 0
@@ -49,7 +56,12 @@ score = 0
 powerup = False
 power_counter = 0
 eaten_ghost = [False, False, False, False]
-targets = [(player_x, player_y), (player_x, player_y), (player_x, player_y), (player_x, player_y)]
+targets = [
+    (player_x, player_y),
+    (player_x, player_y),
+    (player_x, player_y),
+    (player_x, player_y)
+]
 blinky_dead = False
 inky_dead = False
 clyde_dead = False
@@ -67,7 +79,10 @@ game_won = False
 
 
 class Ghost:
-    def __init__(self, x_coord, y_coord, target, speed, img, direct, dead, box, id):
+    def __init__(
+    self, x_coord, y_coord, target, speed,
+    img, direct, dead, box, id
+):
         self.x_pos = x_coord
         self.y_pos = y_coord
         self.center_x = self.x_pos + 22
@@ -83,13 +98,19 @@ class Ghost:
         self.rect = self.draw()
 
     def draw(self):
-        if (not powerup and not self.dead) or (eaten_ghost[self.id] and powerup and not self.dead):
+        if (
+    (not powerup and not self.dead) or 
+    (eaten_ghost[self.id] and powerup and not self.dead)
+):
             screen.blit(self.img, (self.x_pos, self.y_pos))
         elif powerup and not self.dead and not eaten_ghost[self.id]:
             screen.blit(spooked_img, (self.x_pos, self.y_pos))
         else:
             screen.blit(dead_img, (self.x_pos, self.y_pos))
-        ghost_rect = pygame.rect.Rect((self.center_x - 18, self.center_y - 18), (36, 36))
+        ghost_rect = pygame.rect.Rect(
+    (self.center_x - 18, self.center_y - 18), 
+    (36, 36)
+)
         return ghost_rect
 
     def check_collisions(self):
@@ -99,7 +120,9 @@ class Ghost:
         num3 = 15
         self.turns = [False, False, False, False]
         if 0 < self.center_x // 30 < 29:
-            if level[(self.center_y - num3) // num1][self.center_x // num2] == 9:
+            if level[
+    (self.center_y - num3) // num1
+][self.center_x // num2] == 9:
                 self.turns[2] = True
             if level[self.center_y // num1][(self.center_x - num3) // num2] < 3 \
                     or (level[self.center_y // num1][(self.center_x - num3) // num2] == 9 and (
@@ -667,12 +690,12 @@ def draw_misc():
     for i in range(lives):
         screen.blit(pygame.transform.scale(player_images[0], (30, 30)), (650 + i * 40, 915))
     if game_over:
-        pygame.draw.rect(screen, 'white', [50, 200, 800, 300],0, 10)
+        pygame.draw.rect(screen, 'white', [50, 200, 800, 300], 0, 10)
         pygame.draw.rect(screen, 'dark gray', [70, 220, 760, 260], 0, 10)
         gameover_text = font.render('Game over! Space bar to restart!', True, 'red')
         screen.blit(gameover_text, (100, 300))
     if game_won:
-        pygame.draw.rect(screen, 'white', [50, 200, 800, 300],0, 10)
+        pygame.draw.rect(screen, 'white', [50, 200, 800, 300], 0, 10)
         pygame.draw.rect(screen, 'dark gray', [70, 220, 760, 260], 0, 10)
         gameover_text = font.render('Victory! Space bar to restart!', True, 'green')
         screen.blit(gameover_text, (100, 300))
@@ -1218,4 +1241,3 @@ while run:
 
     pygame.display.flip()
 pygame.quit()
-
